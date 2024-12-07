@@ -126,9 +126,9 @@ chmod +x ~/Desktop/tools/winPEASx86.exe || true
 
 info "Additional tools installed and organized in ~/Desktop/tools."
 
-# Step 5: Create a "Projects" Folder on the Desktop
-info "Creating 'Projects' folder on the Desktop..."
-mkdir -p ~/Desktop/Projects
+# Step 5: Create a "projects" Folder on the Desktop
+info "Creating 'projects' folder on the Desktop..."
+mkdir -p ~/Desktop/projects
 
 # Step 6: Quality of Life Improvements
 info "Installing quality-of-life tools..."
