@@ -88,7 +88,18 @@ fi
 
 # AutoRecon Installation with Virtual Environment
 info "Installing AutoRecon..."
+
+# Ensure python3-venv is installed
+if ! dpkg -s python3-venv &> /dev/null; then
+    info "Installing python3-venv..."
+    sudo apt-get install -y python3-venv
+else
+    info "python3-venv is already installed. Skipping..."
+fi
+
+# Create the virtual environment for AutoRecon
 if [ ! -d ~/Desktop/tools/autorecon-venv ]; then
+    info "Creating virtual environment for AutoRecon..."
     python3 -m venv ~/Desktop/tools/autorecon-venv
     source ~/Desktop/tools/autorecon-venv/bin/activate
     pip install git+https://github.com/Tib3rius/AutoRecon.git
