@@ -33,16 +33,13 @@ tools=(
     "metasploit-framework"
     "nmap"
     "burpsuite"
-    "impacket-scripts"
     "responder"
     "sqlmap"
     "john"
     "hashcat"
     "hydra"
-    "evil-winrm"
     "seclists"
     "gobuster"
-    "crackmapexec"
 )
 
 # Install each tool
@@ -64,27 +61,6 @@ git clone https://github.com/carlospolop/PEASS-ng.git ~/Desktop/tools/PEASS-ng
 # AutoRecon
 info "Installing AutoRecon..."
 pip install git+https://github.com/Tib3rius/AutoRecon.git
-
-# Shellerator
-info "Installing Shellerator..."
-git clone https://github.com/ShutdownRepo/shellerator.git ~/Desktop/tools/shellerator
-
-# XSStrike
-info "Installing XSStrike..."
-git clone https://github.com/s0md3v/XSStrike.git ~/Desktop/tools/XSStrike
-pip install -r ~/Desktop/tools/XSStrike/requirements.txt
-
-# PwnCat
-info "Installing PwnCat..."
-pip install pwncat-cs
-
-# PayloadAllTheThings
-info "Cloning PayloadAllTheThings..."
-git clone https://github.com/swisskyrepo/PayloadsAllTheThings.git ~/Desktop/tools/PayloadsAllTheThings
-
-# HackTricks
-info "Cloning HackTricks..."
-git clone https://github.com/carlospolop/hacktricks.git ~/Desktop/tools/hacktricks
 
 info "Additional tools installed and organized in ~/Desktop/tools."
 
