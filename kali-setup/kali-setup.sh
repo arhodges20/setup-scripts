@@ -3,14 +3,9 @@
 # No interactives
 export DEBIAN_FRONTEND=noninteractive
 
-# Preconfigure console-setup to avoid prompts
-sudo apt-get install -y debconf-utils
-echo "console-setup console-setup/charmap47 select UTF-8" | sudo debconf-set-selections
-echo "console-setup console-setup/fontface47 select Fixed" | sudo debconf-set-selections
-echo "console-setup console-setup/fontsize47 select 16" | sudo debconf-set-selections
-
-# Reconfigure console-setup non-interactively to suppress any prompts
-sudo dpkg-reconfigure -f noninteractive console-setup
+# Remove console-setup to avoid configuration prompts
+info "Removing console-setup to avoid interactive prompts..."
+sudo apt-get remove -y console-setup
 
 # Exit on any error
 set -e
