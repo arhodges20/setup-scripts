@@ -3,7 +3,7 @@
 # No interactives
 export DEBIAN_FRONTEND=noninteractive
 
-# Remove console-setup to avoid configuration prompts
+# Remove console-setup to avoid prompts
 info "Removing console-setup to avoid interactive prompts..."
 sudo apt-get remove -y console-setup
 
@@ -43,8 +43,6 @@ tools=(
     "seclists"
     "gobuster"
     "crackmapexec"
-    "bloodhound"
-    "neo4j"
 )
 
 # Install each tool
@@ -52,11 +50,6 @@ for tool in "${tools[@]}"; do
     info "Installing/updating $tool..."
     sudo DEBIAN_FRONTEND=noninteractive apt-get install -y $tool
 done
-
-# Enable Neo4j for BloodHound
-info "Enabling Neo4j service..."
-sudo systemctl enable neo4j
-sudo systemctl start neo4j
 
 info "All tools installed and updated."
 
