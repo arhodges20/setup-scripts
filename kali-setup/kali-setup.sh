@@ -1,5 +1,8 @@
 #!/bin/bash
 
+#No interactives
+export DEBIAN_FRONTEND=noninteractive
+
 # Exit on any error
 set -e
 
