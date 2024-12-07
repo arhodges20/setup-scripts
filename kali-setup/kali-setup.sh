@@ -109,6 +109,16 @@ else
     info "AutoRecon virtual environment already exists. Skipping..."
 fi
 
+# Step 4: Create a "Howtos" Folder and Download Guides
+info "Creating 'Howtos' folder on the Desktop..."
+mkdir -p ~/Desktop/howtos
+
+info "Downloading how-to guides for tools..."
+wget -q -O ~/Desktop/howtos/howto-autorecon.txt https://raw.githubusercontent.com/arhodges20/setup-scripts/main/howtos/howto-autorecon.txt
+wget -q -O ~/Desktop/howtos/howto-linpeas.txt https://raw.githubusercontent.com/arhodges20/setup-scripts/main/howtos/howto-linpeas.txt
+wget -q -O ~/Desktop/howtos/howto-winpeas.txt https://raw.githubusercontent.com/arhodges20/setup-scripts/main/howtos/howto-winpeas.txt
+info "How-to guides downloaded to ~/Desktop/howtos."
+
 # Additional Cleanup for ~/Desktop/tools
 chmod +x ~/Desktop/tools/PEASS-ng/linpeas.sh || true
 chmod +x ~/Desktop/tools/winPEASx64.exe || true
@@ -116,11 +126,11 @@ chmod +x ~/Desktop/tools/winPEASx86.exe || true
 
 info "Additional tools installed and organized in ~/Desktop/tools."
 
-# Step 4: Create a "Projects" Folder on the Desktop
+# Step 5: Create a "Projects" Folder on the Desktop
 info "Creating 'Projects' folder on the Desktop..."
 mkdir -p ~/Desktop/Projects
 
-# Step 5: Quality of Life Improvements
+# Step 6: Quality of Life Improvements
 info "Installing quality-of-life tools..."
 
 # Oh-My-ZSH
@@ -156,5 +166,5 @@ sudo apt-get autoremove -y
 sudo apt-get autoclean -y
 
 # Completion Message
-info "Setup complete! Your machine is updated, tools are installed, and 'Projects' and 'tools' folders have been created on the Desktop."
+info "Setup complete! Your machine is updated, tools are installed, and 'Projects', 'tools', and 'howtos' folders have been created on the Desktop."
 info "It's recommended to reboot your system to ensure all services and tools work correctly."
