@@ -53,9 +53,62 @@ done
 
 info "All tools installed and updated."
 
-# Step 3: Create a "Projects" Folder on the Desktop
+# Step 3: Install Additional CTF Tools in ~/Desktop/tools
+info "Installing additional tools to ~/Desktop/tools..."
+mkdir -p ~/Desktop/tools
+
+# LinPEAS
+info "Installing LinPEAS..."
+git clone https://github.com/carlospolop/PEASS-ng.git ~/Desktop/tools/PEASS-ng
+
+# AutoRecon
+info "Installing AutoRecon..."
+pip install git+https://github.com/Tib3rius/AutoRecon.git
+
+# Shellerator
+info "Installing Shellerator..."
+git clone https://github.com/ShutdownRepo/shellerator.git ~/Desktop/tools/shellerator
+
+# XSStrike
+info "Installing XSStrike..."
+git clone https://github.com/s0md3v/XSStrike.git ~/Desktop/tools/XSStrike
+pip install -r ~/Desktop/tools/XSStrike/requirements.txt
+
+# PwnCat
+info "Installing PwnCat..."
+pip install pwncat-cs
+
+# PayloadAllTheThings
+info "Cloning PayloadAllTheThings..."
+git clone https://github.com/swisskyrepo/PayloadsAllTheThings.git ~/Desktop/tools/PayloadsAllTheThings
+
+# HackTricks
+info "Cloning HackTricks..."
+git clone https://github.com/carlospolop/hacktricks.git ~/Desktop/tools/hacktricks
+
+info "Additional tools installed and organized in ~/Desktop/tools."
+
+# Step 4: Create a "Projects" Folder on the Desktop
 info "Creating 'Projects' folder on the Desktop..."
 mkdir -p ~/Desktop/Projects
+
+# Step 5: Quality of Life Improvements
+info "Installing quality-of-life tools..."
+
+# Oh-My-ZSH
+info "Installing ZSH and Oh-My-ZSH..."
+sudo apt-get install -y zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+# Tmux
+info "Installing tmux..."
+sudo apt-get install -y tmux
+
+# Neovim
+info "Installing Neovim..."
+sudo apt-get install -y neovim
+
+info "Quality of life tools installed."
 
 # Additional Cleanup
 info "Cleaning up unused packages..."
@@ -63,5 +116,5 @@ sudo apt-get autoremove -y
 sudo apt-get autoclean -y
 
 # Completion Message
-info "Setup complete! Your machine is updated, tools are installed, and 'Projects' folder has been created on the Desktop."
+info "Setup complete! Your machine is updated, tools are installed, and 'Projects' and 'tools' folders have been created on the Desktop."
 info "It's recommended to reboot your system to ensure all services and tools work correctly."
