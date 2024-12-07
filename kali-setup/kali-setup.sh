@@ -86,12 +86,16 @@ else
     info "WinPEAS is already installed. Skipping..."
 fi
 
-# AutoRecon
-if ! command_exists "autorecon"; then
-    info "Installing AutoRecon..."
+# AutoRecon Installation with Virtual Environment
+info "Installing AutoRecon..."
+if [ ! -d ~/Desktop/tools/autorecon-venv ]; then
+    python3 -m venv ~/Desktop/tools/autorecon-venv
+    source ~/Desktop/tools/autorecon-venv/bin/activate
     pip install git+https://github.com/Tib3rius/AutoRecon.git
+    deactivate
+    info "AutoRecon installed in ~/Desktop/tools/autorecon-venv."
 else
-    info "AutoRecon is already installed. Skipping..."
+    info "AutoRecon virtual environment already exists. Skipping..."
 fi
 
 # Additional Cleanup for ~/Desktop/tools
