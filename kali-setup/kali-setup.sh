@@ -15,6 +15,16 @@ function info {
     echo -e "\e[1;34m[INFO]\e[0m $1"
 }
 
+# Function to check if a command exists
+function command_exists {
+    command -v "$1" &> /dev/null
+}
+
+# Function to check if a file exists
+function file_exists {
+    [[ -f "$1" ]]
+}
+
 info "Starting Kali Linux setup..."
 
 # Step 1: Update and Upgrade the System
@@ -45,8 +55,12 @@ tools=(
 
 # Install each tool
 for tool in "${tools[@]}"; do
-    info "Installing/updating $tool..."
-    sudo DEBIAN_FRONTEND=noninteractive apt-get install -y $tool
+    if ! command_exists "$tool"; then
+        info "Installing/updating $tool..."
+        sudo DEBIAN_FRONTEND=noninteractive apt-get install -y $tool
+    else
+        info "$tool is already installed. Skipping..."
+    fi
 done
 
 info "All tools installed and updated."
@@ -56,22 +70,34 @@ info "Installing additional tools to ~/Desktop/tools..."
 mkdir -p ~/Desktop/tools
 
 # LinPEAS
-info "Installing LinPEAS..."
-git clone https://github.com/carlospolop/PEASS-ng.git ~/Desktop/tools/PEASS-ng
+if [ ! -d ~/Desktop/tools/PEASS-ng ]; then
+    info "Installing LinPEAS..."
+    git clone https://github.com/carlospolop/PEASS-ng.git ~/Desktop/tools/PEASS-ng
+else
+    info "LinPEAS is already installed. Skipping..."
+fi
 
 # WinPEAS
-info "Installing WinPEAS..."
-wget -P ~/Desktop/tools/ https://github.com/carlospolop/PEASS-ng/releases/latest/download/winPEASx64.exe
-wget -P ~/Desktop/tools/ https://github.com/carlospolop/PEASS-ng/releases/latest/download/winPEASx86.exe
+if ! file_exists ~/Desktop/tools/winPEASx64.exe; then
+    info "Installing WinPEAS..."
+    wget -P ~/Desktop/tools/ https://github.com/carlospolop/PEASS-ng/releases/latest/download/winPEASx64.exe
+    wget -P ~/Desktop/tools/ https://github.com/carlospolop/PEASS-ng/releases/latest/download/winPEASx86.exe
+else
+    info "WinPEAS is already installed. Skipping..."
+fi
 
 # AutoRecon
-info "Installing AutoRecon..."
-pip install git+https://github.com/Tib3rius/AutoRecon.git
+if ! command_exists "autorecon"; then
+    info "Installing AutoRecon..."
+    pip install git+https://github.com/Tib3rius/AutoRecon.git
+else
+    info "AutoRecon is already installed. Skipping..."
+fi
 
 # Additional Cleanup for ~/Desktop/tools
-chmod +x ~/Desktop/tools/PEASS-ng/linpeas.sh
-chmod +x ~/Desktop/tools/winPEASx64.exe
-chmod +x ~/Desktop/tools/winPEASx86.exe
+chmod +x ~/Desktop/tools/PEASS-ng/linpeas.sh || true
+chmod +x ~/Desktop/tools/winPEASx64.exe || true
+chmod +x ~/Desktop/tools/winPEASx86.exe || true
 
 info "Additional tools installed and organized in ~/Desktop/tools."
 
@@ -83,17 +109,29 @@ mkdir -p ~/Desktop/Projects
 info "Installing quality-of-life tools..."
 
 # Oh-My-ZSH
-info "Installing ZSH and Oh-My-ZSH..."
-sudo apt-get install -y zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+if ! command_exists "zsh"; then
+    info "Installing ZSH and Oh-My-ZSH..."
+    sudo apt-get install -y zsh
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+else
+    info "ZSH is already installed. Skipping..."
+fi
 
 # Tmux
-info "Installing tmux..."
-sudo apt-get install -y tmux
+if ! command_exists "tmux"; then
+    info "Installing tmux..."
+    sudo apt-get install -y tmux
+else
+    info "Tmux is already installed. Skipping..."
+fi
 
 # Neovim
-info "Installing Neovim..."
-sudo apt-get install -y neovim
+if ! command_exists "nvim"; then
+    info "Installing Neovim..."
+    sudo apt-get install -y neovim
+else
+    info "Neovim is already installed. Skipping..."
+fi
 
 info "Quality of life tools installed."
 
