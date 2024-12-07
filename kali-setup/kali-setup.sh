@@ -3,6 +3,11 @@
 #No interactives
 export DEBIAN_FRONTEND=noninteractive
 
+# Preconfigure console-setup to avoid prompts
+echo "console-setup console-setup/charmap47 select UTF-8" | sudo debconf-set-selections
+echo "console-setup console-setup/fontface47 select Fixed" | sudo debconf-set-selections
+echo "console-setup console-setup/fontsize47 select 16" | sudo debconf-set-selections
+
 # Exit on any error
 set -e
 
