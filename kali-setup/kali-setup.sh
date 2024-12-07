@@ -40,6 +40,7 @@ tools=(
     "hydra"
     "seclists"
     "gobuster"
+    "ffuf"  # Added Ffuf for fuzzing
 )
 
 # Install each tool
@@ -58,9 +59,19 @@ mkdir -p ~/Desktop/tools
 info "Installing LinPEAS..."
 git clone https://github.com/carlospolop/PEASS-ng.git ~/Desktop/tools/PEASS-ng
 
+# WinPEAS
+info "Installing WinPEAS..."
+wget -P ~/Desktop/tools/ https://github.com/carlospolop/PEASS-ng/releases/latest/download/winPEASx64.exe
+wget -P ~/Desktop/tools/ https://github.com/carlospolop/PEASS-ng/releases/latest/download/winPEASx86.exe
+
 # AutoRecon
 info "Installing AutoRecon..."
 pip install git+https://github.com/Tib3rius/AutoRecon.git
+
+# Additional Cleanup for ~/Desktop/tools
+chmod +x ~/Desktop/tools/PEASS-ng/linpeas.sh
+chmod +x ~/Desktop/tools/winPEASx64.exe
+chmod +x ~/Desktop/tools/winPEASx86.exe
 
 info "Additional tools installed and organized in ~/Desktop/tools."
 
